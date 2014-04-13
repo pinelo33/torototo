@@ -33,7 +33,7 @@
             <script src="js/quo.js"></script>
             <script src="js/lungo.js"></script>
             
-            <title>Hello World</title>
+            <title>S F</title>
     </head>
     <body class="app">
             <section id="main">
@@ -43,9 +43,11 @@
                 </article>
             </section>
             <script type="text/javascript">
+               var productos= new Array();
+
                 Lungo.init({
                      name: 'hello-world',
-                resources:['seccion2.html',"seccion3.html","seccion4.html","seccion5.html"]   
+                resources:['seccion2.html',"seccion3.html","seccion03.html","seccion4.html","seccion04.html","seccion5.html","seccion8.html","seccion05.html"]  
                 });
 
                 Lungo.dom('#sabras').on("click",function(event){
@@ -58,8 +60,17 @@
                      Lungo.dom('#facil').on("click",function(event){
                     Lungo.Router.section("seccion5"); 
                 });
-                 
-                
+                Lungo.dom('#seccion8').on('load',function(event){
+                    $$('#listacompra').empty();
+                    for (var producto in productos)
+                    {
+                        $$('#listacompra').append('<li class="thumb big">' +productos[producto]+'</li>');
+                    }
+                });
+                function agregarcarrito(fila)
+                {
+                    productos.push($$('#'+fila).html());
+                }
             </script>
     </body>
 </html>
