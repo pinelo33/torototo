@@ -44,6 +44,8 @@
             </section>
             <script type="text/javascript">
                var productos= new Array();
+               var contadorproductos=1000;
+               var contadorproducto=1000;
 
                 Lungo.init({
                      name: 'hello-world',
@@ -64,12 +66,26 @@
                     $$('#listacompra').empty();
                     for (var producto in productos)
                     {
-                        $$('#listacompra').append('<li class="thumb big">' +productos[producto]+'</li>');
+                        contadorproducto++;
+                        $$('#listacompra').append('<li class="thumb big" id="fila'+contadorproducto+'">' +productos[producto]+'</li>');
                     }
+                    productos.length=0;
                 });
                 function agregarcarrito(fila)
                 {
-                    productos.push($$('#'+fila).html());
+                    contadorproductos++;
+                    var remplazo=$$('#'+fila).html();
+                    var filaid=remplazo.replace("agregarcarrito","borrarcarrito");
+                    var signo=filaid.replace("Agregar al carrito","Eliminar Carrito");
+                    signo=signo.replace("Agregar al carrito","Eliminar Carrito");
+                    var filanueva=signo.replace(fila,"fila"+contadorproductos);
+                    productos.push(filanueva);
+                }
+
+                function borrarcarrito(fila)
+                {
+
+                    $$('#'+fila).empty();
                 }
             </script>
     </body>
